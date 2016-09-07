@@ -11,11 +11,11 @@ import (
 type Application struct {
 	name    string
 	config  Config
-	logger  log.Logger
+	logger  *log.Logger
 	handler fasthttp.RequestHandler
 }
 
-func NewApplication(name string, config Config, l log.Logger, h fasthttp.RequestHandler) *Application {
+func NewApplication(name string, config Config, l *log.Logger, h fasthttp.RequestHandler) *Application {
 	return &Application{
 		name: name,
 		config: config,

@@ -1,4 +1,4 @@
-package logfactory
+package helpers
 
 import (
 	"github.com/apex/log"
