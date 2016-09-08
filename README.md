@@ -2,16 +2,12 @@
 
 composable, mvc library for `fasthttp`. Inspired [dropwizard] and [utron]
 
-## Why
-- offer a set of reusable libraries similar to `gorilla` libraries for `net/http`
-- `fastmvc` is not a framework and allows you to swap out any existing components with 
-`fasthttp.RequestHandler` based middleware
-
 ## Features
 
-- 12factor compliant
+- Offer a set of reusable libraries similar to `gorilla` libraries for `net/http`
+- Designed to be 12factor compliant from the ground up
 - Both server and router are zero memory allocation and byte slice optimised 
-- Compatible with any `fasthttp.RequestHandler` or Middleware
+- Non intrusive and freely compatible with any `fasthttp.RequestHandler` based code or Middleware
 
 ## Friends
 
