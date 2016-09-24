@@ -1,4 +1,4 @@
-package fastmvc
+package gofury
 
 type Model interface {
 	UnmarshalJSON([]byte) error

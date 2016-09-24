@@ -1,4 +1,4 @@
-package fastmvc
+package gofury
 
 import (
 	"testing"

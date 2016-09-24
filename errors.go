@@ -1,4 +1,4 @@
-package fastmvc
+package gofury
 
 type HttpError struct {
 	error

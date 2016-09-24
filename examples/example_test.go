@@ -1,3 +1,3 @@
-package fastmvc
+package examples
 
 

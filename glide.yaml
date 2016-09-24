@@ -1,0 +1,16 @@
+package: github.com/gofury/gofury
+import:
+- package: github.com/apex/log
+  subpackages:
+  - handlers/memory
+- package: github.com/gofury/fastjsonapi
+  version: ~8.0.0
+- package: github.com/kelseyhightower/envconfig
+  version: ~1.1.0
+- package: github.com/valyala/fasthttp
+  version: ~20160617.0.0
+testImport:
+- package: github.com/stretchr/testify
+  version: ~1.1.3
+  subpackages:
+  - assert

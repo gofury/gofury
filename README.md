@@ -12,11 +12,12 @@ composable, mvc library for `fasthttp`. Inspired [dropwizard] and [utron]
 ## Friends
 
 FastMVC is a composition glue between the following awesome libraries:
-- [fasthttp][fasthttp] for zero http server
+- [fasthttp][fasthttp] for zero mem alloc http server
 - [furyroad][furyroad] handler and middleware chaining
 - [fusion][fusion] handler and middleware chaining
 - [envconfig][envconfig] environment variable based config
 - [apex/log][log] simple, handler based structured logging
+- [glide][glide] for depedency management that makes sense
 
 Testing is made easier with:
 - [testify][testify] assertions and mocks
@@ -48,6 +49,8 @@ Some other `fasthttp` based frameworks
 [fastjsonapi]:  https://github.com/gofury/fastjsonapi
 [envconfig]:    https://github.com/kelseyhightower/envconfig
 [easyjson]:     https://github.com/mailru/easyjson
+[log]:          https://github.com/apex/log     
+[glide]:        https://github.com/Masterminds/glide
 
 [testify]:      https://github.com/stretchr/testify/assert
 [httpexpect]:   https://github.com/gavv/httpexpect
