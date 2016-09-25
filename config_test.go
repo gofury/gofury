@@ -9,9 +9,9 @@ import (
 
 func TestBaseConfig(t *testing.T) {
 	// given
-	os.Setenv("HOST", "api.amaysim.net/sms")
+	os.Setenv("HOST", "api.gofury.com/furiousandfast")
 	os.Setenv("PORT", "443")
-	os.Setenv("LOGLEVEL", "debug")
+	os.Setenv("LOGLEVEL", "warn")
 
 	// when
 	c := BaseConfig{}
@@ -19,9 +19,9 @@ func TestBaseConfig(t *testing.T) {
 
 	// then
 	expected := BaseConfig {
-			Host:"api.amaysim.net/sms",
+			Host:"api.gofury.com/furiousandfast",
 			Port:"443",
-			LogLevel:log.DebugLevel.String(),
+		LogLevel:log.WarnLevel.String(),
 		}
 
 	assert.Equal(t, expected, c)
