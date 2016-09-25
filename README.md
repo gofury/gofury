@@ -13,8 +13,8 @@ composable, mvc library for `fasthttp`. Inspired [dropwizard] and [utron]
 
 FastMVC is a composition glue between the following awesome libraries:
 - [fasthttp][fasthttp] for zero mem alloc http server
-- [furyroad][furyroad] handler and middleware chaining
-- [fusion][fusion] handler and middleware chaining
+- [furyroad][furyroad] zero mem alloc router
+- [fusion][fusion] middleware chaining
 - [envconfig][envconfig] environment variable based config
 - [apex/log][log] simple, handler based structured logging
 - [glide][glide] for depedency management that makes sense
@@ -26,6 +26,19 @@ Testing is made easier with:
 Other options libraries:
 - [fastjsonapi][fastjsonapi] jsonapi conversion using `fasthttp` and `easyjson`
 - [easyjson][easyjson] [fastest][jsonbenchmark] non-reflection struct based json parsing
+
+## Usage
+To import the project, use either `glide` 
+
+    glide get github.com/gofury/gofury
+    
+or `go get`
+
+    go get github.com/gofury/gofury
+
+Build the project
+
+    go test $(glide novendor)
 
 ## Todo
 
