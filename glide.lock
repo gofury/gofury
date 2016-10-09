@@ -1,36 +1,36 @@
-hash: f0d3dc94530466a44f75ccbf32daa8a30981c0718ba6789eb43aa50b6b45e59f
-updated: 2016-09-25T16:52:20.958799189+10:00
+hash: 6a02ac70d8d9e80c92ad2efa4cbaf70f0fcd9f82484e31fc761cc3e997bb2de1
+updated: 2016-10-09T21:47:34.069664+11:00
 imports:
 - name: github.com/apex/log
   version: 4ea85e918cc8389903d5f12d7ccac5c23ab7d89b
   subpackages:
   - handlers/memory
 - name: github.com/gofury/fastjsonapi
-  version: 6c3ef0a51a75bf36085351e1566c6f7b2163c8b1
+  version: a33f60da7d6ca2171659ab539a2c727a78b9c847
 - name: github.com/kelseyhightower/envconfig
   version: 13674b2d056fb658a00ba3f36e78043ced07c924
 - name: github.com/klauspost/compress
   version: d0763f13d86e630f5d3ea9fa848a6ecc68255297
   subpackages:
   - flate
-  - gziphightow
+  - gzip
   - zlib
 - name: github.com/klauspost/cpuid
   version: 09cded8978dc9e80714c4d85b0322337b0a1e5e0
 - name: github.com/klauspost/crc32
   version: 19b0b332c9e4516a6370a0456e6182c3b5036720
 - name: github.com/mailru/easyjson
-  version: a5759050626e5d52afe79bbb6d77a59e98df5d2d
+  version: 2ea6ed0ea8d20091ff80b30ab47e206e776e7c53
   subpackages:
   - buffer
   - jlexer
   - jwriter
 - name: github.com/satori/go.uuid
-  version: 879c5887cd475cd7864858769793b2ceb0d44feb
+  version: b061729afc07e77a8aa4fad0a2fd840958f1942a
 - name: github.com/valyala/bytebufferpool
   version: e746df99fe4a3986f4d4f79e13c1e0117ce9c2f7
 - name: github.com/valyala/fasthttp
-  version: d03a22720925ae6fd6f81db717d9288fc2771d79
+  version: 07f692d02d618489bb3e3d7984caaa82af91b133
   subpackages:
   - fasthttputil
 testImports:
@@ -39,7 +39,7 @@ testImports:
   subpackages:
   - spew
 - name: github.com/pmezard/go-difflib
-  version: 792786c7400a136282c1664665ae0a8db921c6c2
+  version: d8ed2627bdf02c080bf22230dbb337003b7aba2d
   subpackages:
   - difflib
 - name: github.com/stretchr/testify
