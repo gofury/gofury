@@ -4,7 +4,7 @@ import:
   subpackages:
   - handlers/memory
 - package: github.com/gofury/fastjsonapi
-  version: ^1.0.0
+  version: ^1.1.1-b16
 - package: github.com/valyala/fasthttp
   version: 07f692d02d618489bb3e3d7984caaa82af91b133
 - package: github.com/kelseyhightower/envconfig
