@@ -1,5 +1,5 @@
-hash: 712f310bd5e7b551e9aaee9a0218e834ce5027bb19e40f1cd657e3871af3a817
-updated: 2016-10-11T17:30:12.698974679+11:00
+hash: 656223b61548c50021f4a398d86a111c936a19c012c693a04263901e6132efa3
+updated: 2016-10-23T22:55:47.363671198+11:00
 imports:
 - name: github.com/apex/log
   version: 4ea85e918cc8389903d5f12d7ccac5c23ab7d89b
@@ -8,7 +8,7 @@ imports:
 - name: github.com/gofury/fastjsonapi
   version: 172b716010d89a07c36cd741c60fab871edf7bce
 - name: github.com/kelseyhightower/envconfig
-  version: 13674b2d056fb658a00ba3f36e78043ced07c924
+  version: 9aca109c9aec4633fced9717c4a09ecab3d33111
 - name: github.com/klauspost/compress
   version: d0763f13d86e630f5d3ea9fa848a6ecc68255297
   subpackages:
@@ -25,6 +25,8 @@ imports:
   - buffer
   - jlexer
   - jwriter
+- name: github.com/rcrowley/go-metrics
+  version: ab2277b1c5d15c3cba104e9cbddbdfc622df5ad8
 - name: github.com/satori/go.uuid
   version: 879c5887cd475cd7864858769793b2ceb0d44feb
 - name: github.com/valyala/bytebufferpool

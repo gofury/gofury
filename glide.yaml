@@ -8,7 +8,8 @@ import:
 - package: github.com/valyala/fasthttp
   version: 07f692d02d618489bb3e3d7984caaa82af91b133
 - package: github.com/kelseyhightower/envconfig
-  version: 13674b2d056fb658a00ba3f36e78043ced07c924
+  version: ~1.2.0
+- package: github.com/rcrowley/go-metrics
 testImport:
 - package: github.com/stretchr/testify
   version: ~1.1.3

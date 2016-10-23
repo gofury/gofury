@@ -19,8 +19,6 @@ func (c *BaseController) UnmarshalRequest(payload Model) fasthttp.RequestHandler
 			ctx.Error("Request body is empty", fasthttp.StatusUnprocessableEntity)
 		} else if err := fastjsonapi.UnmarshalPayload(ctx.PostBody(), payload); err != nil {
 			ctx.Error(err.Error(), fasthttp.StatusUnprocessableEntity)
-		} else {
-			ctx.SetUserValue("payload", payload)
 		}
 	}
 }
