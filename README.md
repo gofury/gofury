@@ -1,28 +1,24 @@
 # GoFury
 
-composable, mvc library for `fasthttp`. Inspired [dropwizard] and [utron]
+composable, open minded and light weight mvc library. Inspired [dropwizard] and [utron]. Usese `fasthttp` by default but can also switch to standard `net/http` in the future.
 
 ## Features
 
-- Offer a set of reusable libraries similar to `gorilla` libraries for `net/http`
+- Offer a set of reusable libraries similar to excellent `gorilla` libraries.
 - Designed to be 12factor compliant from the ground up
 - Both server and router are zero memory allocation and byte slice optimised 
 - No lock in. Purely a glue library that is non intrusive. Freely compatible with any `fasthttp.RequestHandler` based code or Middleware
+- respects MVC pattern: "thin Controller with helper Services" over "throws everything into a magic fat handler".
 
 ## Motivation
-I wrote this library whilst looking for a go library that's:
+For a while I looked for a light weight go mvc library that was intuitive to use like Rails and [dropwizard][dropwizard]. The closest match I found was [utron][utron], which was impressive. But still suffers the same lock-in symptoms as more heavy weight web frameworks such as [iris][iris], [gin][gin] or [echo][echo]. Having an wrapper layer of `utron.Ctx`, `iris.Context`, `gin.Context` or `echo.Context` adds an extra layer of custom vendor complexity and straight away throws out any standard `net/http` or `fasthttp` compatible middlewares.
 
-- similar to Rails and [dropwizard][dropwizard] in intuitiveness
-- pays proper respect to MVC pattern, especially "thin Controller with helper Services" rather than "throws everything into a fat handler".
-
-The closest match I found was [utron][utron], which was impressive. But still suffers the same lock-in symptoms as more heavy weight web frameworks such as [iris][iris], [gin][gin] or [echo][echo]. Having an wrapper layer of `utron.Ctx`, `iris.Context`, `gin.Context` or `echo.Context` adds an extra layer of custom vendor complexity and straight away throws out any standard `net/http` or `fasthttp` compatible middlewares.
-
-`gofury` on the other hand is a "library and not a "framework". It offers some opinions but does not enforce them. All libraries and interfaces can be replaced with alternatives to suit developer needs. Helpful but with zero lock-in.
+I wrote `gofury` to be a "library and not a "framework". It offers some opinions but does not enforce them. All libraries and interfaces can be replaced with alternatives to suit developer needs. Helpful but with zero lock-in.
 
 ## Friends
 GoFury out of the box forms a composition glue between the following libraries:
 
-- [fasthttp][fasthttp] zero mem alloc http server, sensible `RequestCtx` that is easy to test
+- [fasthttp][fasthttp] zero mem alloc http server, sensible `RequestCtx` that is easy to use and test
 - [fasthttprouter][fasthttprouter] zero mem alloc router
 - [fusion][fusion] middleware chaining inspired by [alice][alice]
 - [envconfig][envconfig] environment variable based config
@@ -57,6 +53,7 @@ Build the project
 - db migration
 - metrics and healthcheck
 - views
+- standard net/http module
 
 [dropwizard]:   https://github.com/dropwizard/dropwizard
 [utron]:        https://github.com/gernest/utron
