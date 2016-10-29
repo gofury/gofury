@@ -7,7 +7,7 @@ composable, open minded and light weight mvc library. Inspired [dropwizard] and 
 - Offer a set of reusable libraries similar to excellent `gorilla` libraries.
 - Designed to be 12factor compliant from the ground up
 - Both server and router are zero memory allocation and byte slice optimised 
-- No lock in. Purely a glue library that is non intrusive. Freely compatible with any `fasthttp.RequestHandler` based code or Middleware
+- No lock in and non intrusive. Freely compatible with any `fasthttp.RequestHandler` based code or Middleware
 - respects MVC pattern: "thin Controller with helper Services" over "throws everything into a magic fat handler".
 
 ## Motivation
