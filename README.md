@@ -15,9 +15,7 @@ I wrote this library whilst looking for a go library that's:
 - similar to Rails and [dropwizard][dropwizard] in intuitiveness
 - pays proper respect to MVC pattern, especially "thin Controller with helper Services" rather than "throws everything into a fat handler".
 
-The closest match I found was [utron][utron], which was impressive. But still suffers the same lock-in symptoms as more heavy weight web frameworks such as [iris][iris], [gin][gin] or [echo][echo]:
-
-- Having an wrapper layer of `utron.Ctx`, `iris.Context`, `gin.Context` or `echo.Context` adds an extra layer of custom vendor complexity and straight away throws out any standard `net/http` or `fasthttp` compatible middlewares.
+The closest match I found was [utron][utron], which was impressive. But still suffers the same lock-in symptoms as more heavy weight web frameworks such as [iris][iris], [gin][gin] or [echo][echo]. Having an wrapper layer of `utron.Ctx`, `iris.Context`, `gin.Context` or `echo.Context` adds an extra layer of custom vendor complexity and straight away throws out any standard `net/http` or `fasthttp` compatible middlewares.
 
 `gofury` on the other hand is a "library and not a "framework". It offers some opinions but does not enforce them. All libraries and interfaces can be replaced with alternatives to suit developer needs. Helpful but with zero lock-in.
 
@@ -64,6 +62,7 @@ Build the project
 [utron]:        https://github.com/gernest/utron
 [iris]:         https://github.com/kataras/iris
 [echo]:         https://github.com/labstack/echo
+[gin]:          https://github.com/gin-gonic/gin
 
 [fasthttp]:     https://github.com/valyala/fasthttp
 [fasthttprouter]: https://github.com/buaazp/fasthttprouter
