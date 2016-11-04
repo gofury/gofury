@@ -25,8 +25,6 @@ imports:
   - buffer
   - jlexer
   - jwriter
-- name: github.com/rcrowley/go-metrics
-  version: ab2277b1c5d15c3cba104e9cbddbdfc622df5ad8
 - name: github.com/satori/go.uuid
   version: 879c5887cd475cd7864858769793b2ceb0d44feb
 - name: github.com/valyala/bytebufferpool
