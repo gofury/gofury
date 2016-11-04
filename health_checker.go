@@ -15,11 +15,12 @@ type HealthChecker interface {
 }
 
 func HealthCheck(ctx *fasthttp.RequestCtx, healthChecks HealthCheckers) {
-	output, err := json.MarshalIndent(healthChecks, "", "  ")
-	if err == nil {
-		ctx.SetContentType("application/json")
-		fmt.Fprintln(ctx, string(output))
-	} else {
+	ctx.SetContentType("application/json")
+	output, err := json.MarshalIndent(healthChecks, "", "    ")
+	if err != nil {
 		ctx.SetStatusCode(fasthttp.StatusInternalServerError)
+		return
 	}
+	ctx.SetStatusCode(fasthttp.StatusOK)
+	fmt.Fprintln(ctx, string(output))
 }
