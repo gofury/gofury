@@ -7,42 +7,37 @@ import (
 )
 
 type DummyHealthCheck struct {
-	Name    string
-	Healthy bool
+	name    string
+	healthy bool
 }
 
 func (h *DummyHealthCheck) CheckHealth() bool {
-	return h.Healthy
+	return h.healthy
 }
 
-func (h *DummyHealthCheck) HealthCheckerName() string {
-	return h.Name
+func (h *DummyHealthCheck) Name() string {
+	return h.name
 }
 
 func TestHealthCheck(t *testing.T) {
 	// given
-	healthChecks := HealthCheckers{
-		&DummyHealthCheck{Name: "first", Healthy: true},
-		&DummyHealthCheck{Name: "second", Healthy: false},
-	}
 	ctx := &fasthttp.RequestCtx{}
 
 	// when
-	HealthCheck(ctx, healthChecks)
+	HealthCheck(ctx,
+		&DummyHealthCheck{name: "first", healthy: true},
+		&DummyHealthCheck{name: "second", healthy: false},
+	)
 
 	// then
 	assert.Equal(t, fasthttp.StatusOK, ctx.Response.StatusCode())
 	assert.Equal(t, "application/json", string(ctx.Response.Header.ContentType()))
 
-	healthCheckJSON := `[
+	healthCheckJSON := `
 		{
-			"Name": "first",
-			"Healthy": true
-		},
-		{
-			"Name": "second",
-			"Healthy": false
-		}
-	]`
+			"first": true,
+			"second": false
+
+		}`
 	assert.JSONEq(t, healthCheckJSON, string(ctx.Response.Body()))
 }

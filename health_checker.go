@@ -3,24 +3,25 @@ package gofury
 import (
 	"github.com/valyala/fasthttp"
 	"fmt"
-	"encoding/json"
 )
-
-type HealthCheckers []HealthChecker
 
 // HealthChecker interface.
 type HealthChecker interface {
+	Name() string
 	CheckHealth() bool
-	HealthCheckerName() string
 }
 
-func HealthCheck(ctx *fasthttp.RequestCtx, healthChecks HealthCheckers) {
+func HealthCheck(ctx *fasthttp.RequestCtx, healthChecks... HealthChecker) {
 	ctx.SetContentType("application/json")
-	output, err := json.MarshalIndent(healthChecks, "", "    ")
-	if err != nil {
-		ctx.SetStatusCode(fasthttp.StatusInternalServerError)
-		return
+	fmt.Fprintln(ctx, "{")
+	for i, hc := range healthChecks {
+		fmt.Fprintf(ctx, `	"%s": %t`, hc.Name(), hc.CheckHealth())
+		if i < len(healthChecks)-1 {
+			fmt.Fprintln(ctx, ",")
+		} else {
+			fmt.Fprintln(ctx)
+		}
 	}
+	fmt.Fprintln(ctx, "}")
 	ctx.SetStatusCode(fasthttp.StatusOK)
-	fmt.Fprintln(ctx, string(output))
 }
