@@ -1,6 +1,5 @@
 package gofury
 
-type BaseConfig struct {
+type Logconfig struct {
 	LogLevel string `default:"info"`
 }
-

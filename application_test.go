@@ -8,7 +8,7 @@ import (
 )
 
 type TestConfig struct {
-	*BaseConfig
+	*Logconfig
 	*HTTPConfig
 }
 
@@ -25,7 +25,7 @@ func TestLoadConfig(t *testing.T) {
 
 	// then
 	expected := &TestConfig{
-		&BaseConfig{
+		&Logconfig{
 			LogLevel:log.WarnLevel.String(),
 		},
 		&HTTPConfig{

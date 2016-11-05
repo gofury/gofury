@@ -1,7 +1,6 @@
-package gofury
+package fasthttp
 
 import (
-	"fmt"
 	"net"
 	"runtime"
 	"github.com/valyala/fasthttp"
@@ -11,23 +10,26 @@ import (
 
 type FastHTTPService struct {
 	name     string
-	config   gofury.HTTPConfig
+	config   *gofury.HTTPConfig
 	logger   *log.Logger
 	handler  fasthttp.RequestHandler
 	listener net.Listener
 }
 
-func NewFastHTTPService(name string, config gofury.HTTPConfig, l *log.Logger, h fasthttp.RequestHandler) *FastHTTPService {
+func NewFastHTTPService(name string, config *gofury.HTTPConfig, l *log.Logger, h fasthttp.RequestHandler) *FastHTTPService {
 	return &FastHTTPService{
+		name: name,
 		config: config,
 		logger: l,
 		handler: h,
 	}
 }
 
-func (app *FastHTTPService) StartUp() {
-	fmt.Printf("listening on %s\n", app.config.ListenerAddr())
+func (app *FastHTTPService) Name() string {
+	return app.name
+}
 
+func (app *FastHTTPService) StartUp() error {
 	s := &fasthttp.Server{
 		Handler: app.handler,
 		Name:    app.name,
@@ -36,9 +38,10 @@ func (app *FastHTTPService) StartUp() {
 
 	if err := s.Serve(app.listener); err != nil {
 		app.logger.Fatalf("Error when serving incoming connections: %s", err)
-	} else {
-		app.logger.Info("started on")
+		return err
 	}
+	app.logger.Infof("listening on %s\n", app.config.ListenerAddr())
+	return nil
 }
 
 func (app *FastHTTPService) getListener(listenAddr string) net.Listener {
@@ -50,6 +53,6 @@ func (app *FastHTTPService) getListener(listenAddr string) net.Listener {
 	return ln
 }
 
-func (app *FastHTTPService) ShutDown() {
-	app.listener.Close()
+func (app *FastHTTPService) ShutDown() error {
+	return app.listener.Close()
 }

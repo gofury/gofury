@@ -1,4 +1,4 @@
-package gofury
+package fasthttp
 
 import (
 	"testing"

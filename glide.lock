@@ -1,10 +1,12 @@
-hash: 656223b61548c50021f4a398d86a111c936a19c012c693a04263901e6132efa3
-updated: 2016-10-23T22:55:47.363671198+11:00
+hash: b82ec1391815295249d0c288916be53ac2b5c55de430c3474942cf483163aa91
+updated: 2016-11-06T02:23:39.18014+11:00
 imports:
 - name: github.com/apex/log
   version: 4ea85e918cc8389903d5f12d7ccac5c23ab7d89b
   subpackages:
   - handlers/memory
+- name: github.com/buaazp/fasthttprouter
+  version: 5396e5b544db47fab9bce89929cd4c05df3b3de0
 - name: github.com/gofury/fastjsonapi
   version: 172b716010d89a07c36cd741c60fab871edf7bce
 - name: github.com/kelseyhightower/envconfig
