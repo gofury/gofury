@@ -1,9 +1,17 @@
-package helpers
+package apex
 
 import (
 	"github.com/apex/log"
 	"github.com/apex/log/handlers/memory"
 )
+
+func ParseApexLogLevel(logLevel string) log.Level {
+	if level, err := log.ParseLevel(logLevel); err != nil {
+		return log.InfoLevel
+	} else {
+		return level
+	}
+}
 
 func NewTestLogger(level log.Level) (*log.Logger, *memory.Handler) {
 	h := memory.New()
@@ -13,3 +21,4 @@ func NewTestLogger(level log.Level) (*log.Logger, *memory.Handler) {
 	}
 	return l, h
 }
+

@@ -7,22 +7,32 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestBaseConfig(t *testing.T) {
+type TestConfig struct {
+	*BaseConfig
+	*HTTPConfig
+}
+
+func TestLoadConfig(t *testing.T) {
 	// given
 	os.Setenv("HOST", "api.gofury.com/furiousandfast")
 	os.Setenv("PORT", "443")
 	os.Setenv("LOGLEVEL", "warn")
+	app := BaseApplication{}
 
 	// when
-	c := BaseConfig{}
-	c.LoadConfig()
+	c := &TestConfig{}
+	app.LoadConfig(c)
 
 	// then
-	expected := BaseConfig {
+	expected := &TestConfig{
+		&BaseConfig{
+			LogLevel:log.WarnLevel.String(),
+		},
+		&HTTPConfig{
 			Host:"api.gofury.com/furiousandfast",
 			Port:"443",
-		LogLevel:log.WarnLevel.String(),
-		}
+		},
+	}
 
 	assert.Equal(t, expected, c)
 }

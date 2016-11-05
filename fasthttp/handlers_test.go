@@ -15,19 +15,19 @@ func (h *DummyHealthCheck) CheckHealth() bool {
 	return h.healthy
 }
 
-func (h *DummyHealthCheck) Name() string {
+func (h *DummyHealthCheck) HealthCheckName() string {
 	return h.name
 }
 
-func TestHealthCheck(t *testing.T) {
+func TestCheckHealth(t *testing.T) {
 	// given
 	ctx := &fasthttp.RequestCtx{}
 
 	// when
-	HealthCheck(ctx,
+	CheckHealth(
 		&DummyHealthCheck{name: "first", healthy: true},
 		&DummyHealthCheck{name: "second", healthy: false},
-	)
+	)(ctx)
 
 	// then
 	assert.Equal(t, fasthttp.StatusOK, ctx.Response.StatusCode())

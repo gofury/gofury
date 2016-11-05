@@ -1,50 +1,40 @@
 package gofury
 
-import (
-	"fmt"
-	"net"
-	"runtime"
-	"github.com/valyala/fasthttp"
-	"github.com/apex/log"
-)
+import "github.com/kelseyhightower/envconfig"
 
-type Application struct {
-	name    string
-	config  Config
-	logger  *log.Logger
-	handler fasthttp.RequestHandler
+type Application interface {
+	Name() string
+	LoadConfig(cfg interface{}) error
+	RegisterServices(services ...Service)
+	StartUp() error
+	ShutDown() error
 }
 
-func NewApplication(name string, config Config, l *log.Logger, h fasthttp.RequestHandler) *Application {
-	return &Application{
-		name: name,
-		config: config,
-		logger: l,
-		handler: h,
-	}
+type BaseApplication struct {
+	services []Service
 }
 
-func (app *Application) Start() {
-	fmt.Printf("listening on %s\n", app.config.ListenerAddr())
+func (app *BaseApplication) Name() string {
+	return "Overwrite Me"
+}
 
-	s := &fasthttp.Server{
-		Handler: app.handler,
-		Name:    app.name,
-	}
+func (app *BaseApplication) LoadConfig(cfg interface{}) error {
+	return envconfig.Process("", cfg);
+}
 
-	if err := s.Serve(app.getListener(app.config.ListenerAddr())); err != nil {
-		app.logger.Fatalf("Error when serving incoming connections: %s", err)
-	} else {
-		app.logger.Info("started on")
+func (app *BaseApplication) RegisterServices(services ...Service) {
+	app.services = append(app.services, services...)
+}
+
+func (app *BaseApplication) StartUp() {
+	for _, service := range app.services {
+		service.StartUp()
 	}
 }
 
-func (app *Application) getListener(listenAddr string) net.Listener {
-	runtime.GOMAXPROCS(runtime.NumCPU())
-	ln, err := net.Listen("tcp4", listenAddr);
-	if err != nil {
-		app.logger.Fatal(err.Error())
+func (app *BaseApplication) ShutDown() {
+	for _, service := range app.services {
+		service.ShutDown()
 	}
-	return ln
 }
 
