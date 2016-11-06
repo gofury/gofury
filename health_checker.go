@@ -12,10 +12,15 @@ type HealthChecker interface {
 }
 
 func HealthCheck(ctx *fasthttp.RequestCtx, healthChecks... HealthChecker) {
+	status := fasthttp.StatusOK
 	ctx.SetContentType("application/json")
 	fmt.Fprintln(ctx, "{")
 	for i, hc := range healthChecks {
-		fmt.Fprintf(ctx, `	"%s": %t`, hc.Name(), hc.CheckHealth())
+		result := hc.CheckHealth()
+		fmt.Fprintf(ctx, `	"%s": %t`, hc.Name(), result)
+		if (!result) {
+			status = fasthttp.StatusBadRequest
+		}
 		if i < len(healthChecks)-1 {
 			fmt.Fprintln(ctx, ",")
 		} else {
@@ -23,5 +28,5 @@ func HealthCheck(ctx *fasthttp.RequestCtx, healthChecks... HealthChecker) {
 		}
 	}
 	fmt.Fprintln(ctx, "}")
-	ctx.SetStatusCode(fasthttp.StatusOK)
+	ctx.SetStatusCode(status)
 }

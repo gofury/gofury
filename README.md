@@ -1,5 +1,5 @@
 # GoFury
-
+[![Build Status](https://snap-ci.com/gofury/gofury/branch/master/build_image)](https://snap-ci.com/gofury/gofury/branch/master)
 composable, open minded and light weight mvc library. Inspired [dropwizard] and [utron]. Usese `fasthttp` by default but can also switch to standard `net/http` in the future.
 
 ## Features
