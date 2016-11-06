@@ -1,4 +1,4 @@
-default: deps test
+Mdefault: deps test
 
 lint:
 	@go fmt
