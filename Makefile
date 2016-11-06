@@ -1,7 +1,4 @@
-APP=gofury
-VERSION?=latest
-
-default: build
+default: deps test
 
 lint:
 	@go fmt
