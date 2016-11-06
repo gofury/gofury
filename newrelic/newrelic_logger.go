@@ -2,7 +2,6 @@ package newrelic
 
 import (
 	"github.com/apex/log"
-	"github.com/newrelic/go-agent"
 )
 
 // NewRelicLogger wraps apex/log for use with New Relic.
