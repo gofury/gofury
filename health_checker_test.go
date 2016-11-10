@@ -1,9 +1,11 @@
 package gofury
 
 import (
-	"testing"
-	"github.com/valyala/fasthttp"
+	"fmt"
 	"github.com/stretchr/testify/assert"
+	"github.com/valyala/fasthttp"
+	"runtime"
+	"testing"
 )
 
 type DummyHealthCheck struct {
@@ -33,8 +35,9 @@ func TestHealthCheckSuccess(t *testing.T) {
 	assert.Equal(t, fasthttp.StatusOK, ctx.Response.StatusCode())
 	assert.Equal(t, "application/json", string(ctx.Response.Header.ContentType()))
 
-	healthCheckJSON := `
-		{
+	healthCheckJSON := "{\n"
+	healthCheckJSON = healthCheckJSON + fmt.Sprintf("	\"number of goroutine\": %v,\n", runtime.NumGoroutine())
+	healthCheckJSON = healthCheckJSON + `
 			"first": true,
 			"second": true
 
@@ -56,10 +59,30 @@ func TestHealthCheckFail(t *testing.T) {
 	assert.Equal(t, fasthttp.StatusBadRequest, ctx.Response.StatusCode())
 	assert.Equal(t, "application/json", string(ctx.Response.Header.ContentType()))
 
-	healthCheckJSON := `
-		{
+	healthCheckJSON := "{\n"
+	healthCheckJSON = healthCheckJSON + fmt.Sprintf("	\"number of goroutine\": %v,\n", runtime.NumGoroutine())
+	healthCheckJSON = healthCheckJSON + `
 			"first": true,
 			"second": false
+
+		}`
+	assert.JSONEq(t, healthCheckJSON, string(ctx.Response.Body()))
+}
+
+func TestHealthCheckWithNoHealthChecker(t *testing.T) {
+	// given
+	ctx := &fasthttp.RequestCtx{}
+
+	// when
+	HealthCheck(ctx)
+
+	// then
+	assert.Equal(t, fasthttp.StatusOK, ctx.Response.StatusCode())
+	assert.Equal(t, "application/json", string(ctx.Response.Header.ContentType()))
+
+	healthCheckJSON := "{\n"
+	healthCheckJSON = healthCheckJSON + fmt.Sprintf("	\"number of goroutine\": %v\n", runtime.NumGoroutine())
+	healthCheckJSON = healthCheckJSON + `
 
 		}`
 	assert.JSONEq(t, healthCheckJSON, string(ctx.Response.Body()))

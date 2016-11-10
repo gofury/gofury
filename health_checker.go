@@ -1,8 +1,9 @@
 package gofury
 
 import (
-	"github.com/valyala/fasthttp"
 	"fmt"
+	"github.com/valyala/fasthttp"
+	"runtime"
 )
 
 // HealthChecker interface.
@@ -11,14 +12,18 @@ type HealthChecker interface {
 	CheckHealth() bool
 }
 
-func HealthCheck(ctx *fasthttp.RequestCtx, healthChecks... HealthChecker) {
+func HealthCheck(ctx *fasthttp.RequestCtx, healthChecks ...HealthChecker) {
 	status := fasthttp.StatusOK
 	ctx.SetContentType("application/json")
 	fmt.Fprintln(ctx, "{")
+	fmt.Fprintf(ctx, `	"number of goroutine": %v`, runtime.NumGoroutine())
+	if len(healthChecks) > 0 {
+		fmt.Fprintln(ctx, ",")
+	}
 	for i, hc := range healthChecks {
 		result := hc.CheckHealth()
 		fmt.Fprintf(ctx, `	"%s": %t`, hc.Name(), result)
-		if (!result) {
+		if !result {
 			status = fasthttp.StatusBadRequest
 		}
 		if i < len(healthChecks)-1 {
