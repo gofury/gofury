@@ -5,6 +5,8 @@ imports:
   version: 4ea85e918cc8389903d5f12d7ccac5c23ab7d89b
   subpackages:
   - handlers/memory
+- name: github.com/buaazp/fasthttprouter
+  version: 5396e5b544db47fab9bce89929cd4c05df3b3de0
 - name: github.com/gofury/fastjsonapi
   version: 172b716010d89a07c36cd741c60fab871edf7bce
 - name: github.com/kelseyhightower/envconfig

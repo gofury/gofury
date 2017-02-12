@@ -1,4 +1,4 @@
-package gofury
+package fasthttp
 
 import (
 	"fmt"
@@ -17,7 +17,7 @@ func (h *DummyHealthCheck) CheckHealth() bool {
 	return h.healthy
 }
 
-func (h *DummyHealthCheck) Name() string {
+func (h *DummyHealthCheck) HealthCheckName() string {
 	return h.name
 }
 
@@ -26,7 +26,7 @@ func TestHealthCheckSuccess(t *testing.T) {
 	ctx := &fasthttp.RequestCtx{}
 
 	// when
-	HealthCheck(ctx,
+	CheckHealth(ctx,
 		&DummyHealthCheck{name: "first", healthy: true},
 		&DummyHealthCheck{name: "second", healthy: true},
 	)
@@ -50,7 +50,7 @@ func TestHealthCheckFail(t *testing.T) {
 	ctx := &fasthttp.RequestCtx{}
 
 	// when
-	HealthCheck(ctx,
+	CheckHealth(ctx,
 		&DummyHealthCheck{name: "first", healthy: true},
 		&DummyHealthCheck{name: "second", healthy: false},
 	)
@@ -74,7 +74,7 @@ func TestHealthCheckWithNoHealthChecker(t *testing.T) {
 	ctx := &fasthttp.RequestCtx{}
 
 	// when
-	HealthCheck(ctx)
+	CheckHealth()
 
 	// then
 	assert.Equal(t, fasthttp.StatusOK, ctx.Response.StatusCode())
