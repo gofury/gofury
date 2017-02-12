@@ -1,11 +1,13 @@
-package fasthttp
+package examples
 
 import (
 	"github.com/gofury/gofury"
 	"github.com/buaazp/fasthttprouter"
+	"fmt"
+
+	fasthttpservice "github.com/gofury/gofury/fasthttp"
 
 	"github.com/apex/log"
-	"fmt"
 	"github.com/valyala/fasthttp"
 )
 
@@ -26,11 +28,11 @@ func main() {
 
 }
 
-func createFastHTTPService(cfg *gofury.HTTPConfig, logger *log.Logger) *gf_fasthttp.FastHTTPService {
+func createFastHTTPService(cfg *gofury.HTTPConfig, logger *log.Logger) *fasthttpservice.FastHTTPService {
 	router := fasthttprouter.New()
 	router.GET("/ping", func(ctx *fasthttp.RequestCtx) {
 		fmt.Fprint(ctx, "pong")
 	})
 
-	return gf_fasthttp.NewFastHTTPService("Fast HTTP Server", cfg, logger, router.Handler)
+	return fasthttpservice.NewFastHTTPService("Fast HTTP Server", cfg, logger, router.Handler)
 }

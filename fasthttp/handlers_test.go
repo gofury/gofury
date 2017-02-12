@@ -26,10 +26,10 @@ func TestHealthCheckSuccess(t *testing.T) {
 	ctx := &fasthttp.RequestCtx{}
 
 	// when
-	CheckHealth(ctx,
+	HealthCheckHandler(
 		&DummyHealthCheck{name: "first", healthy: true},
 		&DummyHealthCheck{name: "second", healthy: true},
-	)
+	)(ctx)
 
 	// then
 	assert.Equal(t, fasthttp.StatusOK, ctx.Response.StatusCode())
@@ -50,10 +50,10 @@ func TestHealthCheckFail(t *testing.T) {
 	ctx := &fasthttp.RequestCtx{}
 
 	// when
-	CheckHealth(ctx,
+	HealthCheckHandler(
 		&DummyHealthCheck{name: "first", healthy: true},
 		&DummyHealthCheck{name: "second", healthy: false},
-	)
+	)(ctx)
 
 	// then
 	assert.Equal(t, fasthttp.StatusBadRequest, ctx.Response.StatusCode())
@@ -74,7 +74,7 @@ func TestHealthCheckWithNoHealthChecker(t *testing.T) {
 	ctx := &fasthttp.RequestCtx{}
 
 	// when
-	CheckHealth()
+	HealthCheckHandler()(ctx)
 
 	// then
 	assert.Equal(t, fasthttp.StatusOK, ctx.Response.StatusCode())

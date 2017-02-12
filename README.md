@@ -55,26 +55,17 @@ Other options libraries:
 - [fastjsonapi][fastjsonapi] jsonapi conversion using `fasthttp` and `easyjson`
 - [easyjson][easyjson] [fastest][jsonbenchmark] non-reflection struct based json parsing
 
-## Usage
-To import the project, use either `glide` 
-
-    glide get github.com/gofury/gofury
-    
-or `go get`
-
-    go get github.com/gofury/gofury
-
-See `examples/example_test.go`
-
 ## Build 
 
-    go test $(glide novendor)
+    make test
+
+## Sample Project
+See `examples/example_test.go`
 
 ## Todo
 
 - db migration
 - metrics and healthcheck
-- views
 - standard net/http module
 
 [dropwizard]:   https://github.com/dropwizard/dropwizard

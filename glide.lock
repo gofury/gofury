@@ -1,12 +1,12 @@
-hash: 5d3b7d27420f391776a3ec892ea929562e380934394acc87c0f47aed6004a2d6
-updated: 2016-11-06T02:43:10.0917158+11:00
+hash: 3a267490f016485d14218e8e2ff5e5d0e8f05cca332e994c88a963cc0c66ad6e
+updated: 2017-02-12T22:13:44.5763432+11:00
 imports:
 - name: github.com/apex/log
   version: 4ea85e918cc8389903d5f12d7ccac5c23ab7d89b
   subpackages:
   - handlers/memory
 - name: github.com/buaazp/fasthttprouter
-  version: 5396e5b544db47fab9bce89929cd4c05df3b3de0
+  version: ade4e2031af3aed7fffd241084aad80a58faf421
 - name: github.com/gofury/fastjsonapi
   version: 172b716010d89a07c36cd741c60fab871edf7bce
 - name: github.com/kelseyhightower/envconfig
@@ -28,7 +28,13 @@ imports:
   - jlexer
   - jwriter
 - name: github.com/newrelic/go-agent
-  version: 372845e16294c9fa73951b27d5631b601643fc51
+  version: 71ae6edf91a40f8bb740c2438eef209b11c2f87c
+  subpackages:
+  - internal
+  - internal/jsonx
+  - internal/logger
+  - internal/sysinfo
+  - internal/utilization
 - name: github.com/satori/go.uuid
   version: 879c5887cd475cd7864858769793b2ceb0d44feb
 - name: github.com/valyala/bytebufferpool
