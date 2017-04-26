@@ -8,8 +8,8 @@ test:
 .PHONY: test
 
 tag:
-	git tag "$VERSION-b$GO_PIPELINE_COUNTER"
-	git push origin "$VERSION-b$GO_PIPELINE_COUNTER"
+	git tag "$(VERSION)-b$(GO_PIPELINE_COUNTER)"
+	git push origin "$(VERSION)-b$(GO_PIPELINE_COUNTER)"
 .PHONY: tag
 
 ##########
