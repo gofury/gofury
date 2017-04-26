@@ -1,0 +1,14 @@
+version: '2.1'
+services:
+  golang:
+    image: amaysim/golang:1.7.5
+    working_dir: /go/src/github.com/gofury/gofury
+    volumes:
+      - .:/go/src/github.com/gofury/gofury
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 192.168.115.0/24
