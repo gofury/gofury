@@ -1,7 +1,9 @@
 package gofury
 
+import "encoding/json"
+
 type Model interface {
-	UnmarshalJSON([]byte) error
-	MarshalJSON() ([]byte, error)
+	json.Marshaler
+	json.Unmarshaler
 	Reset()
 }

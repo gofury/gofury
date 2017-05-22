@@ -6,9 +6,10 @@ import (
 	"github.com/gofury/gofury"
 	"fmt"
 	"runtime"
+	"encoding/json"
 )
 
-func JSONUnmarshaller(payload gofury.Model) fasthttp.RequestHandler {
+func JSONUnmarshaller(payload json.Unmarshaler) fasthttp.RequestHandler {
 	return func(ctx *fasthttp.RequestCtx) {
 		if len(ctx.PostBody()) == 0 {
 			ctx.Error("Request body is empty", fasthttp.StatusUnprocessableEntity)
@@ -19,7 +20,7 @@ func JSONUnmarshaller(payload gofury.Model) fasthttp.RequestHandler {
 	}
 }
 
-func JSONAPIUnmarshaller(payload gofury.Model) fasthttp.RequestHandler {
+func JSONAPIUnmarshaller(payload json.Unmarshaler) fasthttp.RequestHandler {
 	return func(ctx *fasthttp.RequestCtx) {
 		if len(ctx.PostBody()) == 0 {
 			ctx.Error("Request body is empty", fasthttp.StatusUnprocessableEntity)
@@ -30,7 +31,7 @@ func JSONAPIUnmarshaller(payload gofury.Model) fasthttp.RequestHandler {
 	}
 }
 
-func JSONMarshaller(payload gofury.Model, status int) fasthttp.RequestHandler {
+func JSONMarshaller(payload json.Marshaler, status int) fasthttp.RequestHandler {
 	return func(ctx *fasthttp.RequestCtx) {
 		bytes, err := payload.MarshalJSON()
 		if err != nil {
@@ -43,7 +44,7 @@ func JSONMarshaller(payload gofury.Model, status int) fasthttp.RequestHandler {
 	}
 }
 
-func JSONAPIMarshaller(payload gofury.Model, status int) fasthttp.RequestHandler {
+func JSONAPIMarshaller(payload json.Marshaler, status int) fasthttp.RequestHandler {
 	return func(ctx *fasthttp.RequestCtx) {
 		if err := fastjsonapi.MarshalOnePayload(ctx, payload); err != nil {
 			ctx.Error(err.Error(), fasthttp.StatusUnprocessableEntity)
